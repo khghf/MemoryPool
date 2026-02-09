@@ -135,7 +135,7 @@ public:
 			<< " threads, " << ALLOCS_PER_THREAD << " allocations each):"
 			<< std::endl;
 
-		auto threadFunc = [](bool useMemPool)
+		auto threadFunc = [&](bool useMemPool)
 			{
 				std::random_device rd;
 				std::mt19937 gen(rd());
@@ -300,6 +300,7 @@ int main()
 {
 	std::cout << "Starting performance tests..." << std::endl;
 	constexpr bool bEnable = true;
+#if 0
 	while (true)
 	{
 		// 预热系统
@@ -310,7 +311,14 @@ int main()
 		PerformanceTest::testMixedSizes(bEnable);
 		PageCache::Inst()->ReturnMemoryToSystem();
 	}
-	
-
+#else
+	// 预热系统
+	PerformanceTest::warmup();
+	//运行测试
+	PerformanceTest::testSmallAllocation(bEnable);
+	PerformanceTest::testMultiThreaded(bEnable);
+	PerformanceTest::testMixedSizes(bEnable);
+	PageCache::Inst()->ReturnMemoryToSystem();
+#endif // 0
 	return 0;
 }

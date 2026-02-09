@@ -1,19 +1,20 @@
-﻿workspace "Delegate"
+﻿workspace "MemoryPool"
 	architecture"x64"
 	configurations{
 		"Debug",
 		"Release",
 	}
 	language"C++"
-	cppdialect "C++20"  
-project"Delegate"
+	cppdialect "C++17"  
+project"MemoryPool"
 	kind"ConsoleApp"
 	files{
-		"./Delegate/include/**.h",
-		"./include/main.cpp",
+		"./MemoryPool/include/**.h",
+		"./MemoryPool/Src/**.cpp",
+		"./MemoryPool/main.cpp",
 	}
 	includedirs{
-		"./"
+		"./MemoryPool"
 	}
 
 	
